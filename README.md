@@ -440,14 +440,20 @@ Each expression builds or extends the tree without requiring a full rewrite, or 
 
 
 Late Insertion (Key Feature)
+
+
 Instead of rewriting:
+
 animalia:chordata:mammalia:cetacea
 
-You can write:
+You can 
+
+## APPEND AT THE END
 
 ```json
 |||animalia:::cetacea
 ```
+
 
 Meaning:
 Jump up to root
@@ -455,7 +461,7 @@ Re-enter through animalia
 Descend inferred levels
 Insert cetacea
 
-Quoted Nodes
+# Quoted Nodes
 
 If a node contains special characters or long text, wrap it in quotes:
 mammalia:"primates, advanced","carnivora: apex predators"
