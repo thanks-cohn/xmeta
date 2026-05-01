@@ -1,4 +1,172 @@
+
+
+
+
+
 # xmeta
+
+## Metadata Sidecars for Files and Folders
+
+xmeta is a fast, local-first CLI tool for attaching meaning to files and directories.
+
+It stores metadata in plain JSON sidecars.
+
+No database
+No cloud
+No hidden state
+
+---
+
+## Core Idea
+
+Every file can carry structure.
+
+photo.png → photo.png.xmeta.json
+directory/ → directory/.xmeta.json
+
+The sidecar holds meaning.
+The file remains unchanged.
+
+---
+
+## What xmeta Stores
+
+tags
+notes
+summaries
+custom fields
+rts structures
+
+---
+
+## Basic Commands
+
+xmeta tag `<file>` portrait,reference
+xmeta note `<file>` "Used for poster concept."
+xmeta summary `<file>` "Reference image for visual study."
+
+---
+
+## Custom Fields
+
+Custom fields are user-defined.
+
+They allow arbitrary metadata to be attached under a named field.
+
+---
+
+## Single Value
+
+`xmeta custom <file> <field_name> "value"`
+
+Example:
+
+`xmeta custom photo.png title "Evening Portrait"`
+
+---
+
+## Multiple Values
+
+`xmeta custom-many <file> <field_name> "value", "value", "value"`
+
+Example:
+
+`xmeta custom-many photo.png color "red", "gold", "black"`
+
+---
+
+## Values Containing Commas
+
+When a value itself contains commas or longer text, it should be wrapped in quotes.
+
+Example:
+
+`xmeta custom-many photo.png notes "red, gold, and black tones", "primary palette reference", "used in final composition"`
+
+Quotes ensure each value is treated as a single unit, even if it contains commas.
+
+---
+
+## Why This Matters
+
+This distinction avoids ambiguity.
+
+A field is either:
+
+single-value (custom)
+multi-value (custom-many)
+
+Values remain clearly separated, even in complex inputs.
+
+---
+
+## rts Support
+
+Custom fields define attributes.
+
+rts defines structure.
+
+---
+
+## Single rts Structure
+
+`xmeta rts <file> "rts structure"`
+
+---
+
+## Multiple rts Structures
+
+`xmeta rts-many <file> "rts structure", "rts structure"`
+
+---
+
+## Consistency
+
+The system follows a clear pattern:
+
+custom → single value
+custom-many → multiple values
+
+rts → single structure
+rts-many → multiple structures
+
+This symmetry ensures clarity across the system.
+
+---
+
+## Example Sidecar
+
+```json
+{
+  "tags": ["portrait", "reference"],
+  "notes": ["Used for poster concept."],
+  "summaries": ["Reference image for visual study."],
+  "custom": {
+    "title": "Evening Portrait",
+    "color": ["red", "gold"],
+    "notes": [
+      "red, gold, and black tones",
+      "primary palette reference"
+    ]
+  },
+  "rts": [
+    "mammalia:primates,carnivora|||plantae"
+  ]
+}
+```
+
+---
+
+## Relationship to bra-vis
+
+xmeta writes structure
+bra-vis renders structure
+
+---
+
+
+### What is rts? 
+
 
 ## Relative Taxonomy Shorthand (RTS)
 
@@ -12,7 +180,7 @@ It assumes structure is known or intentionally defined.
 
 ## Overview
 
-xmeta is a local-first system that attaches structured meaning to files and directories using plain JSON sidecars. :contentReference[oaicite:0]{index=0}
+xmeta is a local-first system that attaches structured meaning to files and directories using plain JSON sidecars.
 
 RTS is its core language.
 
@@ -107,39 +275,6 @@ It expresses movement and intent.
 
 When intermediate levels are not specified, they remain undefined at the language level.
 
----
-
-## bra-vis
-
-bra-vis is the interpreter for RTS.
-
-It is responsible for rendering incomplete or partially specified expressions into visible structure.
-
-Where RTS leaves gaps, bra-vis represents them explicitly.
-
-It does this by:
-
-using known indexed structure when unambiguous  
-using local context when safe  
-inserting unknown placeholders when necessary  
-
-This ensures that even incomplete expressions remain legible and structurally honest.
-
----
-
-## Index and Interpretation
-
-bra-vis maintains an index of known nodes during interpretation.
-
-This allows:
-
-reuse of established structure  
-resolution of chained movement when possible  
-avoidance of unsafe assumptions  
-
-When no safe resolution exists, unknown is used.
-
----
 
 ## What RTS Excels At
 
@@ -209,7 +344,167 @@ honest representation of incomplete knowledge
 
 ---
 
-## Final Principle
+Examples 
+
+
+RTS Syntax
+:    descend one level
+::   descend two unnamed levels
+:::  descend three unnamed levels
+
+|    ascend one level
+||   ascend two levels
+|||  ascend three levels
+
+,    add siblings at the current level
+
+
+Example
+
+```json
+mammalia:primates,carnivora|||plantae
+```
+
+Meaning
+Start at mammalia
+Add:
+primates
+carnivora
+Jump up 3 levels
+Add plantae
+```
+unknown
+└── unknown
+    └── unknown
+        └── mammalia
+            ├── primates
+            └── carnivora
+
+└── plantae
+```
+Intermediate levels are implied.
+
+```
+Full Tree Construction
+life
+├── animalia
+│   ├── chordata
+│   │   ├── mammalia
+│   │   │   ├── primates
+│   │   │   ├── carnivora
+│   │   │   └── cetacea
+│   │   └── aves
+│   │       ├── passeriformes
+│   │       └── accipitriformes
+│   └── arthropoda
+│       ├── insecta
+│       ├── arachnida
+│       └── crustacea
+├── plantae
+│   ├── angiosperms
+│   │   ├── rosids
+│   │   └── asterids
+│   ├── gymnosperms
+│   └── bryophytes
+└── fungi
+    ├── ascomycota
+    └── basidiomycota
+```
+
+
+Can be expressed as:
+
+```json
+life:animalia:chordata:mammalia:primates,carnivora|||fungi:ascomycota|plantae:angiosperms:rosids,asterids|||animalia:::cetacea
+```
+
+Or 
+
+```json
+life:animalia:chordata:mammalia:primates,carnivora|||fungi:ascomycota|plantae:angiosperms:rosids,asterids|||animalia:::cetacea|||arthropoda:insecta|||plantae:bryophytes
+```
+Both are correct!
+
+Both expressions are valid because RTS is additive.
+Each expression builds or extends the tree without requiring a full rewrite, or mention of intermediary levels. 
+
+
+
+Late Insertion (Key Feature)
+Instead of rewriting:
+animalia:chordata:mammalia:cetacea
+
+You can write:
+
+```json
+|||animalia:::cetacea
+```
+
+Meaning:
+Jump up to root
+Re-enter through animalia
+Descend inferred levels
+Insert cetacea
+
+Quoted Nodes
+
+If a node contains special characters or long text, wrap it in quotes:
+mammalia:"primates, advanced","carnivora: apex predators"
+
+Rule
+Inside "" → literal text  
+Outside "" → structural syntax
+
+
+### Best Practices (Important) 
+
+1. Anchor Instead of Blind Jumps
+
+
+Avoid:
+
+```json
+||||life::::cetacea
+```
+
+Prefer:
+
+```json
+|||animalia:::cetacea
+```
+
+2. Use Meaningful Re-entry Points
+
+Always land on a known node when possible.
+
+3. Limit Excessive Depth Skipping
+
+Use ::: carefully.
+Readable > shortest.
+
+4. Think in Position, Not Paths
+
+RTS is navigation:
+start → move → insert
+
+
+## Modes
+
+Strict Mode
+No inference
+
+Unknown levels remain unknown
+
+
+## Context Mode
+
+Known taxonomy fills missing levels
+Enables shorthand like:
+
+animalia:::cetacea
+
+
+
 
 You do not need the full tree  
 to place the correct branch
