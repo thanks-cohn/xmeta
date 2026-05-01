@@ -442,23 +442,29 @@ Each expression builds or extends the tree without requiring a full rewrite, or 
 Late Insertion (Key Feature)
 
 
-Instead of rewriting:
+*Instead* of rewriting:
 
+```json
 animalia:chordata:mammalia:cetacea
+```
 
 You can 
 
-## APPEND AT THE END
+**APPEND AT THE END**
 
 ```json
 |||animalia:::cetacea
 ```
 
 
-Meaning:
+**Meaning:**
+
 Jump up to root
+
 Re-enter through animalia
+
 Descend inferred levels
+
 Insert cetacea
 
 # Quoted Nodes
