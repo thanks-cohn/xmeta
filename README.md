@@ -525,7 +525,55 @@ Enables shorthand like:
 animalia:::cetacea
 
 
+Philosophy 
+
+You don't need to climb the highest branch to pick the lowest fruit. 
+
+# EXAMPLES
+## Geography
+```text
+earth:north_america:united_states:california:san_francisco
+earth:north_america:united_states:new_york:new_york_city
+earth:europe:france:ile_de_france:paris
+earth:asia:japan:kanto:tokyo
+```
+
+## Geography with Movement
+```text
+earth:north_america:united_states:california:los_angeles|||europe:france:paris
+earth:asia:japan:tokyo||north_america:canada:ontario:toronto
+earth:europe:germany:berlin|||north_america:united_states:new_york:nyc
+```
 
 
-You do not need the full tree  
-to place the correct branch
+## Company / Organization Structure
+```text
+company:engineering:backend:api_team:auth_service
+company:engineering:frontend:web_team:design_system
+company:product:research:user_experience:interviews
+company:operations:finance:accounts_payable:invoices
+```
+
+## Organization with Late Insertion
+```text
+company:engineering:backend:api_team|||engineering:::infrastructure
+company:product:research:user_experience|||product:::analytics
+company:operations:finance|||operations:::legal
+```
+
+## Software / Tech Stack
+
+```text
+software:web_application:frontend:react:components:buttons
+software:web_application:backend:python:fastapi:routes:auth
+software:infrastructure:cloud:aws:ec2:instances
+software:data_pipeline:ingestion:streaming:kafka:topics
+```
+
+## Tech with Chained Movement
+
+```text
+software:web_application:frontend:react:components|||::backend:node:api
+software:infrastructure:cloud:aws:ec2|||:::lambda:functions
+software:data_pipeline:ingestion:kafka|||::processing:spark
+```
