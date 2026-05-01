@@ -577,3 +577,185 @@ software:web_application:frontend:react:components|||::backend:node:api
 software:infrastructure:cloud:aws:ec2|||:::lambda:functions
 software:data_pipeline:ingestion:kafka|||::processing:spark
 ```
+
+More Examples with Explanations 
+
+
+## Continents / Geography
+
+Base
+
+```text
+earth:continents:europe:france:paris,lyon
+```
+Append
+
+```text
+|||europe::germany:berlin,munich
+```
+Final RTS (combined)
+
+```text
+earth:continents:europe:france:paris,lyon|||europe::germany:berlin,munich
+```
+Result
+```
+earth
+└── continents
+    └── europe
+        ├── france
+        │   ├── paris
+        │   └── lyon
+        └── germany
+            ├── berlin
+            └── munich
+```
+
+ Animalia / Taxonomy
+
+
+Base
+```
+life:animalia:chordata:mammalia:primates,carnivora
+```
+Append
+
+```
+|||animalia:::cetacea
+```
+Final RTS
+```text
+life:animalia:chordata:mammalia:primates,carnivora|||animalia:::cetacea
+```
+Result
+```
+life
+└── animalia
+    └── chordata
+        └── mammalia
+            ├── primates
+            ├── carnivora
+            └── cetacea
+```
+Knowledge / Subjects
+Base ```text
+knowledge:science:physics:mechanics
+```
+Append
+```
+|||science::chemistry:organic
+```
+
+Final RTS
+
+```text
+knowledge:science:physics:mechanics|||science::chemistry:organic
+```
+Result
+```
+knowledge
+└── science
+    ├── physics
+    │   └── mechanics
+    └── chemistry
+        └── organic
+```
+
+🏢 Company Structure
+Base
+```text
+company:engineering:backend,frontend
+```
+Append
+```text
+|||company::design:ui,ux
+```
+Final RTS
+```text
+company:engineering:backend,frontend|||company::design:ui,ux
+```
+Result
+```
+company
+├── engineering
+│   ├── backend
+│   └── frontend
+└── design
+    ├── ui
+    └── ux
+```
+🎮 Game World
+Base
+```text
+world:regions:forest:enemies
+```
+
+
+Append
+```text
+|||regions::desert:bandits
+```
+
+Final RTS
+
+```text
+world:regions:forest:enemies|||regions::desert:bandits
+```
+Result
+```
+world
+└── regions
+    ├── forest
+    │   └── enemies
+    └── desert
+        └── bandits
+```
+## Library
+
+Base
+
+```json
+library:genres:fiction:fantasy
+```
+Append
+```json
+|||genres::nonfiction:history
+```
+Final RTS
+
+```json
+library:genres:fiction:fantasy|||genres::nonfiction:history
+```
+Result
+```
+library
+└── genres
+    ├── fiction
+    │   └── fantasy
+    └── nonfiction
+        └── history
+Biology
+```
+
+Base 
+
+```text
+life:plantae:angiosperms:rosids
+```
+
+Append
+```text
+|||plantae::gymnosperms
+```
+Final RTS
+```text
+life:plantae:angiosperms:rosids|||plantae::gymnosperms
+```
+Result
+```text
+life
+└── plantae
+    ├── angiosperms
+    │   └── rosids
+    └── gymnosperms
+```
