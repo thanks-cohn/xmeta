@@ -611,7 +611,7 @@ earth
             └── munich
 ```
 
- Animalia / Taxonomy
+## Animalia / Taxonomy
 
 
 Base
@@ -637,12 +637,17 @@ life
             ├── carnivora
             └── cetacea
 ```
-Knowledge / Subjects
-Base ```text
+## Knowledge / Subjects
+
+Base 
+
+```text
 knowledge:science:physics:mechanics
 ```
+
 Append
-```
+
+```text
 |||science::chemistry:organic
 ```
 
@@ -661,7 +666,8 @@ knowledge
         └── organic
 ```
 
-🏢 Company Structure
+## Company Structure
+
 Base
 ```text
 company:engineering:backend,frontend
@@ -684,7 +690,8 @@ company
     ├── ui
     └── ux
 ```
-🎮 Game World
+## Game World
+
 Base
 ```text
 world:regions:forest:enemies
@@ -701,6 +708,7 @@ Final RTS
 ```text
 world:regions:forest:enemies|||regions::desert:bandits
 ```
+
 Result
 ```
 world
@@ -734,8 +742,9 @@ library
     │   └── fantasy
     └── nonfiction
         └── history
-Biology
 ```
+## Biology
+
 
 Base 
 
