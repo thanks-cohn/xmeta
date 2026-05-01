@@ -22,6 +22,7 @@ No hidden state
 Every file can carry structure.
 
 photo.png → photo.png.xmeta.json
+
 directory/ → directory/.xmeta.json
 
 The sidecar holds meaning.
@@ -41,9 +42,14 @@ rts structures
 
 ## Basic Commands
 
+
+```text
 xmeta tag `<file>` portrait,reference
+
 xmeta note `<file>` "Used for poster concept."
+
 xmeta summary `<file>` "Reference image for visual study."
+```
 
 ---
 
@@ -106,6 +112,9 @@ Custom fields define attributes.
 
 rts defines structure.
 
+For more information about what rts is you can go to the rts section below for an overview and examples. 
+
+
 ---
 
 ## Single rts Structure
@@ -165,7 +174,7 @@ bra-vis renders structure
 ---
 
 
-### What is rts? 
+# What is rts? 
 
 
 ## Relative Taxonomy Shorthand (RTS)
