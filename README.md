@@ -768,3 +768,39 @@ life
     │   └── rosids
     └── gymnosperms
 ```
+
+
+
+# Guarantees 
+
+
+## Determinism
+
+RTS is deterministic.
+
+Given the same input and the same known structure, it will always produce the same result.
+
+When multiple interpretations are possible, RTS does not choose.
+It marks the structure as unknown instead.
+
+
+## Non-Destructive Behavior
+
+RTS never removes or rewrites existing structure.
+
+All expressions are additive.
+
+New information extends the tree without invalidating prior definitions.
+
+
+## Local Reasoning
+
+RTS expressions are evaluated relative to the current position.
+
+They do not require global knowledge of the entire structure.
+
+This allows large hierarchies to be built incrementally without full context.
+
+
+
+
