@@ -770,6 +770,36 @@ life
 ```
 
 
+# Properties
+
+## Structural Inference
+
+RTS expressions can imply the existence of structure not explicitly stored.
+
+Given:
+
+
+bear:::|||||field_of_study  
+bear:::||||||wildlife  
+bear:::|||predator
+we can infer:
+
+- multiple valid ancestral paths for the same node  
+- relative ordering between unseen nodes  
+- the existence of additional hierarchical structures  
+
+RTS therefore allows structure to be discovered through movement, not just defined explicitly.
+
+
+
+
+## EQUIVALENCE
+
+RTS suggest the detection of  structural role equivalence across different hierarchies. Note we dont make the claim that it does, but that it may. 
+
+
+
+
 
 # Guarantees 
 
